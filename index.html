@@ -1,1 +1,660 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neha Sengar | PhD Candidate, KAIST</title>
+    <meta name="description" content="Neha Sengar - PhD candidate in Robotics at KAIST. Research in mechanistic interpretability of large vision-language models, training-free visual grounding, and robotic perception.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #F7F5F2;
+            --surface: #FFFFFF;
+            --surface-warm: #FBF9F7;
+            --text: #2D2D2D;
+            --text-secondary: #6B6B6B;
+            --text-light: #999999;
+            --accent: #4A7C8F;
+            --accent-soft: #E6F0F3;
+            --accent-dark: #3A6170;
+            --accent-warm: #C8956C;
+            --accent-warm-soft: #FFF3E8;
+            --border: #E8E4DF;
+            --border-light: #F0ECE8;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.03);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.03);
+            --serif: 'Crimson Pro', Georgia, serif;
+            --sans: 'Outfit', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --radius: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(247, 245, 242, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .nav-inner {
+            max-width: 960px; margin: 0 auto; padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between; height: 60px;
+        }
+        .nav-name {
+            font-family: var(--serif); font-weight: 600; font-size: 20px;
+            color: var(--text); text-decoration: none; letter-spacing: -0.01em;
+        }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-secondary); font-size: 13.5px;
+            font-weight: 500; letter-spacing: 0.01em; transition: color 0.25s; position: relative;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1.5px; background: var(--accent); transition: width 0.25s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-toggle { display: none; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text); }
+
+        /* HERO */
+        .hero {
+            max-width: 960px; margin: 0 auto; padding: 72px 32px 56px;
+            display: grid; grid-template-columns: 200px 1fr; gap: 56px; align-items: start;
+        }
+        .hero-photo-wrap { position: relative; }
+        .hero-photo-wrap::before {
+            content: ''; position: absolute; top: 8px; left: 8px;
+            width: 100%; height: 100%; border-radius: 50%; background: var(--accent-soft); z-index: 0;
+        }
+        .hero-photo {
+            width: 200px; height: 200px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--surface); box-shadow: var(--shadow-md);
+            position: relative; z-index: 1;
+            background: linear-gradient(135deg, var(--accent-soft), #d4e8ed);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent); font-size: 52px; font-family: var(--serif); font-weight: 600;
+        }
+        .hero-info h1 {
+            font-family: var(--serif); font-size: 40px; font-weight: 700;
+            line-height: 1.15; margin-bottom: 6px; letter-spacing: -0.02em;
+        }
+        .hero-subtitle { font-size: 17px; color: var(--accent); font-weight: 500; margin-bottom: 4px; }
+        .hero-affiliation { font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; }
+        .hero-bio {
+            font-size: 15px; color: var(--text-secondary); line-height: 1.75;
+            margin-bottom: 24px; max-width: 580px;
+        }
+        .hero-bio strong { color: var(--text); font-weight: 500; }
+        .hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .hero-links a {
+            display: inline-flex; align-items: center; gap: 7px; font-size: 13px;
+            color: var(--text-secondary); text-decoration: none; padding: 8px 16px;
+            background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+            transition: all 0.25s; font-weight: 500; box-shadow: var(--shadow-sm);
+        }
+        .hero-links a:hover {
+            border-color: var(--accent); color: var(--accent);
+            box-shadow: var(--shadow-md); transform: translateY(-1px);
+        }
+        .hero-links a i { font-size: 14px; }
+
+        /* CONTAINER & SECTIONS */
+        .container { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+        section { padding: 48px 0; }
+        .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+        .section-header h2 {
+            font-family: var(--serif); font-size: 26px; font-weight: 600;
+            color: var(--text); letter-spacing: -0.01em;
+        }
+        .section-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+        /* NEWS */
+        .news-list {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm);
+        }
+        .news-item {
+            display: grid; grid-template-columns: 140px 1fr; gap: 16px;
+            padding: 16px 24px; border-bottom: 1px solid var(--border-light);
+            align-items: baseline; transition: background 0.2s;
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-item:hover { background: var(--surface-warm); }
+        .news-date { font-family: var(--mono); font-size: 12.5px; color: var(--text-light); white-space: nowrap; }
+        .news-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+        .news-text strong { color: var(--text); font-weight: 500; }
+
+        /* RESEARCH */
+        .research-intro {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 32px 36px; margin-bottom: 28px;
+            box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+        }
+        .research-intro::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-warm));
+        }
+        .research-intro p { font-size: 15px; color: var(--text-secondary); line-height: 1.8; }
+        .research-intro strong { color: var(--text); }
+
+        .research-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .research-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 24px; transition: all 0.25s;
+            box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+        }
+        .research-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px;
+            background: var(--accent); transform: scaleX(0); transition: transform 0.3s;
+        }
+        .research-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .research-card:hover::after { transform: scaleX(1); }
+        .research-card h3 { font-size: 14.5px; font-weight: 600; margin-bottom: 8px; line-height: 1.35; }
+        .research-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+        .badge {
+            display: inline-block; margin-top: 12px; font-size: 11px; font-family: var(--mono);
+            font-weight: 500; color: var(--accent); background: var(--accent-soft);
+            padding: 4px 10px; border-radius: 5px;
+        }
+
+        /* PROJECTS */
+        .project-item {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm);
+            margin-bottom: 20px; transition: box-shadow 0.25s;
+        }
+        .project-item:hover { box-shadow: var(--shadow-md); }
+        .project-content { display: grid; grid-template-columns: 1fr 340px; gap: 0; }
+        .project-content.reverse { grid-template-columns: 340px 1fr; }
+        .project-text {
+            padding: 32px 36px; display: flex; flex-direction: column; justify-content: center;
+        }
+        .project-text h3 {
+            font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 12px;
+        }
+        .project-text p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .project-tag {
+            font-size: 11.5px; font-family: var(--mono); padding: 3px 10px;
+            background: var(--accent-soft); color: var(--accent-dark); border-radius: 4px; font-weight: 500;
+        }
+        .project-images {
+            background: var(--surface-warm); display: flex; align-items: center; justify-content: center;
+            padding: 24px; min-height: 240px; border-left: 1px solid var(--border-light);
+        }
+        .project-content.reverse .project-images { border-left: none; border-right: 1px solid var(--border-light); }
+        .project-images img { max-width: 100%; max-height: 220px; object-fit: contain; border-radius: 8px; }
+        .project-img-placeholder {
+            width: 100%; height: 180px; background: linear-gradient(135deg, var(--accent-soft), #dce8eb);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            color: var(--accent); font-size: 13px; font-weight: 500;
+        }
+
+        /* PUBLICATIONS */
+        .pub-category {
+            font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--accent); margin-bottom: 16px; margin-top: 32px;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .pub-category:first-of-type { margin-top: 0; }
+        .pub-category::after { content: ''; flex: 1; height: 1px; background: var(--border-light); }
+        .pub-item {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+            padding: 20px 24px; margin-bottom: 10px; box-shadow: var(--shadow-sm); transition: all 0.2s;
+        }
+        .pub-item:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
+        .pub-title {
+            font-family: var(--serif); font-size: 16px; font-weight: 600;
+            color: var(--text); line-height: 1.4; margin-bottom: 6px;
+        }
+        .pub-authors { font-size: 13.5px; color: var(--text-secondary); margin-bottom: 4px; }
+        .pub-authors .me { font-weight: 600; color: var(--text); }
+        .pub-venue { font-size: 13px; color: var(--accent); font-weight: 500; }
+        .pub-links { margin-top: 8px; }
+        .pub-links a {
+            font-size: 12px; font-family: var(--mono); color: var(--accent);
+            text-decoration: none; padding: 3px 10px; border: 1px solid var(--border);
+            border-radius: 5px; margin-right: 6px; transition: all 0.2s; font-weight: 500;
+        }
+        .pub-links a:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+        /* EXPERIENCE TIMELINE */
+        .timeline { position: relative; padding-left: 28px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px;
+            width: 1.5px; background: var(--border);
+        }
+        .timeline-item { position: relative; padding-bottom: 32px; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -24px; top: 7px;
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--surface); border: 2.5px solid var(--accent); z-index: 1;
+        }
+        .timeline-header {
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: 2px; flex-wrap: wrap; gap: 8px;
+        }
+        .timeline-role { font-weight: 600; font-size: 15px; }
+        .timeline-date { font-size: 12.5px; font-family: var(--mono); color: var(--text-light); }
+        .timeline-org { font-size: 14px; color: var(--accent); margin-bottom: 8px; font-weight: 500; }
+        .timeline-desc { list-style: none; }
+        .timeline-desc li {
+            font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+            padding-left: 16px; position: relative; margin-bottom: 4px;
+        }
+        .timeline-desc li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+
+        /* SERVICE */
+        .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .service-box {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 24px 28px; box-shadow: var(--shadow-sm);
+        }
+        .service-box h3 {
+            font-size: 13px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.06em; color: var(--accent); margin-bottom: 14px;
+        }
+        .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .service-tag { font-size: 13px; padding: 6px 14px; border-radius: 6px; font-weight: 500; }
+        .service-tag.top { background: var(--accent-soft); color: var(--accent-dark); }
+        .service-tag.regular {
+            background: var(--surface-warm); color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+        }
+
+        /* CONTACT */
+        .contact-bar {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 36px 40px; text-align: center; box-shadow: var(--shadow-sm);
+        }
+        .contact-bar p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
+        .contact-bar .email-link {
+            display: inline-flex; align-items: center; gap: 8px; font-size: 16px;
+            font-weight: 600; color: var(--accent); text-decoration: none;
+            padding: 12px 28px; background: var(--accent-soft); border-radius: 8px; transition: all 0.25s;
+        }
+        .contact-bar .email-link:hover { background: var(--accent); color: white; }
+
+        footer {
+            max-width: 960px; margin: 0 auto; padding: 32px;
+            text-align: center; font-size: 13px; color: var(--text-light);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; text-align: center; gap: 28px; padding-top: 48px; }
+            .hero-photo-wrap { margin: 0 auto; }
+            .hero-photo { width: 160px; height: 160px; font-size: 40px; }
+            .hero-bio { max-width: 100%; }
+            .hero-links { justify-content: center; }
+            .research-cards { grid-template-columns: 1fr; }
+            .project-content, .project-content.reverse { grid-template-columns: 1fr; }
+            .project-images { border-left: none !important; border-right: none !important; border-top: 1px solid var(--border-light); }
+            .project-content.reverse .project-images { order: 2; }
+            .project-content.reverse .project-text { order: 1; }
+            .service-grid { grid-template-columns: 1fr; }
+            .timeline-header { flex-direction: column; gap: 2px; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column; position: absolute;
+                top: 60px; left: 0; right: 0; background: var(--bg);
+                border-bottom: 1px solid var(--border); padding: 16px 32px; gap: 16px;
+            }
+            .mobile-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-name">Neha Sengar</a>
+        <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+            <a href="#news">News</a>
+            <a href="#research">Research</a>
+            <a href="#projects">Projects</a>
+            <a href="#publications">Publications</a>
+            <a href="#experience">Experience</a>
+            <a href="#service">Service</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-photo-wrap">
+        <div class="hero-photo">NS</div>
+        <!-- REPLACE WITH: <img src="profile_pic.avif" alt="Neha Sengar" class="hero-photo"> -->
+    </div>
+    <div class="hero-info">
+        <h1>Neha Sengar</h1>
+        <p class="hero-subtitle">PhD Candidate in Robotics</p>
+        <p class="hero-affiliation">Vehicular Intelligence Lab · KAIST · Advisor: Prof. Dongsoo Har</p>
+        <p class="hero-bio">
+            I am a PhD candidate at <strong>KAIST</strong>, researching <strong>mechanistic interpretability of large vision-language models</strong> for training-free visual understanding. My work discovers that frozen LVLMs encode spatial grounding knowledge in specialized attention heads, enabling referring expression comprehension and segmentation without any labeled data or fine-tuning. I also work on vision-based perception systems for autonomous robots.
+        </p>
+        <div class="hero-links">
+            <a href="mailto:neha.sengar@kaist.ac.kr"><i class="fas fa-envelope"></i> Email</a>
+            <a href="https://scholar.google.com/citations?user=FlF_MsEAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i> Scholar</a>
+            <a href="https://linkedin.com/in/neha-sengar-804a24123" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/nehasengar" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="Neha_Sengar_CV.pdf" target="_blank"><i class="fas fa-file-pdf"></i> CV</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- NEWS -->
+<section id="news">
+    <div class="section-header"><h2>News</h2></div>
+    <div class="news-list">
+        <div class="news-item">
+            <span class="news-date">Aug 2025</span>
+            <span class="news-text">Founded <strong>BARO</strong>, a tech startup focusing on AI-driven robotics solutions for outdoor navigation 🇰🇷</span>
+        </div>
+        <div class="news-item">
+            <span class="news-date">Jul 2025</span>
+            <span class="news-text">Attended the 7-day <strong>Entrepreneurship Bootcamp at HKUST</strong>, focused on innovation 🇭🇰</span>
+        </div>
+        <div class="news-item">
+            <span class="news-date">May 2025</span>
+            <span class="news-text">Invited as Guest Speaker for Workshop on <strong>"AI in Robotics"</strong> at Amity University 🇮🇳</span>
+        </div>
+        <div class="news-item">
+            <span class="news-date">Feb 2025</span>
+            <span class="news-text">Joined <strong>Ulgool</strong> (K-School, KAIST startup) as Tech Advisor 🇰🇷</span>
+        </div>
+    </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+    <div class="section-header"><h2>Research</h2></div>
+    <div class="research-intro">
+        <p>
+            My dissertation investigates whether frozen Large Vision-Language Models already encode sufficient spatial grounding knowledge in their attention heads to perform visual understanding tasks — without any labeled data, fine-tuning, or architectural modification. The central finding is that a small subset of <strong>contrastive grounding heads</strong> can be automatically discovered through dual prompting with semantically opposing descriptions, and their differential attention responses aggregated into precise spatial signals.
+        </p>
+    </div>
+    <div class="research-cards">
+        <div class="research-card">
+            <h3>Referring Expression Comprehension</h3>
+            <p>Training-free attention-head discovery framework; outperforms training-free baselines by up to 27.95% on RefCOCO.</p>
+            <span class="badge">Under review · TMLR</span>
+        </div>
+        <div class="research-card">
+            <h3>Referring Expression Segmentation</h3>
+            <p>Extended to pixel-level masks via spectral label propagation — competitive with supervised methods, no external segmentation model.</p>
+            <span class="badge">Under review · IEEE SPL</span>
+        </div>
+        <div class="research-card">
+            <h3>Visual Question Answering</h3>
+            <p>Generalizing contrastive head discovery to open-ended visual reasoning tasks.</p>
+            <span class="badge">In progress</span>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="section-header"><h2>Ongoing Projects</h2></div>
+
+    <div class="project-item">
+        <div class="project-content">
+            <div class="project-text">
+                <h3>Dual Parking Robot</h3>
+                <p>Developing an intelligent robotic system that autonomously positions itself beneath a vehicle by detecting the front and rear tire centers using dual cameras and deep learning. The system leverages YOLO-based models for partial tire detection and precise center localization, achieving ≤2° alignment error.</p>
+                <div class="project-tags">
+                    <span class="project-tag">YOLO</span>
+                    <span class="project-tag">LiDAR</span>
+                    <span class="project-tag">Pose Estimation</span>
+                    <span class="project-tag">Camera-LiDAR Fusion</span>
+                </div>
+            </div>
+            <div class="project-images">
+                <!-- REPLACE: <img src="Parking_Robot.avif" alt="Parking Robot"> -->
+                <div class="project-img-placeholder"><i class="fas fa-image" style="margin-right:8px"></i> parking_robot.jpg</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-content reverse">
+            <div class="project-images">
+                <!-- REPLACE: <img src="Charging_Robot.avif" alt="Charging Robot"> -->
+                <div class="project-img-placeholder"><i class="fas fa-image" style="margin-right:8px"></i> charging_robot.jpg</div>
+            </div>
+            <div class="project-text">
+                <h3>Autonomous EV Charging Robot</h3>
+                <p>Working on an autonomous system for electric vehicle charging that integrates AprilTag-based detection for charger localization, YOLO models for detecting CCS1-type charging ports, and SAM for segmenting the port region. The system autonomously aligns and connects the charger using real-time vision and control.</p>
+                <div class="project-tags">
+                    <span class="project-tag">AprilTag</span>
+                    <span class="project-tag">6DOF Pose</span>
+                    <span class="project-tag">SAM</span>
+                    <span class="project-tag">PnP Solving</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-content">
+            <div class="project-text">
+                <h3>Training-Free Visual Grounding in LVLMs</h3>
+                <p>Discovering that frozen vision-language models encode spatial grounding signals in a small subset of specialized attention heads. Through contrastive prompting and mechanistic analysis, we extract precise localization and segmentation — without any labeled data, fine-tuning, or external models.</p>
+                <div class="project-tags">
+                    <span class="project-tag">LVLMs</span>
+                    <span class="project-tag">Mechanistic Interpretability</span>
+                    <span class="project-tag">Contrastive Attention</span>
+                    <span class="project-tag">Zero-shot</span>
+                </div>
+            </div>
+            <div class="project-images">
+                <!-- REPLACE: <img src="REG.png" alt="Visual Grounding"> -->
+                <div class="project-img-placeholder"><i class="fas fa-image" style="margin-right:8px"></i> grounding.jpg</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+    <div class="section-header"><h2>Publications</h2></div>
+
+    <div class="pub-category">Under Review</div>
+
+    <div class="pub-item">
+        <div class="pub-title">Few Contrastive Attention Heads Enable Visual Grounding in Large Vision-Language Models</div>
+        <div class="pub-authors"><span class="me">N. Sengar</span>, A. Saurez, D. Har</div>
+        <div class="pub-venue">Transactions on Machine Learning Research (TMLR), 2026</div>
+    </div>
+    <div class="pub-item">
+        <div class="pub-title">CAGSeg: Training-Free Referring Segmentation via Contrastive Attention Grounding in Vision-Language Models</div>
+        <div class="pub-authors"><span class="me">N. Sengar</span>, A. Saurez, D. Har</div>
+        <div class="pub-venue">IEEE Signal Processing Letters, 2026</div>
+    </div>
+    <div class="pub-item">
+        <div class="pub-title">Vision-Based Tire Lifting for Parking by Dual Parking Robot</div>
+        <div class="pub-authors"><span class="me">N. Sengar</span>, Y. Lee, K. Won Ko, D. Har, S. Lee</div>
+        <div class="pub-venue">IEEE Sensors Journal, 2025</div>
+    </div>
+
+    <div class="pub-category">Journal Articles</div>
+
+    <div class="pub-item">
+        <div class="pub-title">Blockchain-based Vision Transformer Network for Safe Driving Perception</div>
+        <div class="pub-authors"><span class="me">N. Sengar</span>, I. Kumari, J. Lee, D. Har</div>
+        <div class="pub-venue">IEEE Sensors Journal, 2024</div>
+        <div class="pub-links"><a href="https://doi.org/10.1109/JSEN.2024.3454469" target="_blank">DOI</a></div>
+    </div>
+    <div class="pub-item">
+        <div class="pub-title">A Secure, Blockchain-Enabled Vehicular Sensor Communication Protocol With Deep Learning-Assisted Anomaly Detection</div>
+        <div class="pub-authors">S. Mishra*, <span class="me">N. Sengar</span>*, D. Har</div>
+        <div class="pub-venue">IEEE Intelligent Transportation Systems Magazine, 2024</div>
+        <div class="pub-links"><a href="https://doi.org/10.1109/MITS.2024.3519620" target="_blank">DOI</a></div>
+    </div>
+    <div class="pub-item">
+        <div class="pub-title">Where is Morality on Wheels? Decoding LLM-Driven Decision in the Ethical Dilemmas of Autonomous Vehicles</div>
+        <div class="pub-authors">Z. Xu, <span class="me">N. Sengar</span>, T. Chen, H. Chung, O. Oviedo-Trespalacios</div>
+        <div class="pub-venue">Travel Behaviour and Society, Elsevier, 2025</div>
+    </div>
+    <div class="pub-item">
+        <div class="pub-title">EyeDeep-Net: A Multi-Class Diagnosis of Retinal Diseases using Deep Neural Network</div>
+        <div class="pub-authors"><span class="me">N. Sengar</span>, R.C. Joshi, M.K. Dutta, R. Burget</div>
+        <div class="pub-venue">Neural Computing and Applications, Elsevier, 2023</div>
+    </div>
+    <div class="pub-item">
+        <div class="pub-title">A Vision Transformer Based Approach for Analysis of Plasmodium Vivax Life Cycle for Malaria Prediction</div>
+        <div class="pub-authors"><span class="me">N. Sengar</span>, R. Burget, M.K. Dutta</div>
+        <div class="pub-venue">Computer Methods and Programs in Biomedicine, Elsevier, 2022</div>
+    </div>
+    <div class="pub-item">
+        <div class="pub-title">Identification of Disease using Deep Learning and Evaluation of Bacteriosis in Peach Leaf</div>
+        <div class="pub-authors">S. Yadav, <span class="me">N. Sengar</span>, A. Singh, A. Singh, M.K. Dutta</div>
+        <div class="pub-venue">Ecological Informatics, 2021</div>
+    </div>
+
+    <div class="pub-category">Selected Conference Papers</div>
+
+    <div class="pub-item">
+        <div class="pub-title">Robust Monocular Depth Estimation in Adverse Weather Conditions by Unsupervised Domain Adaptation</div>
+        <div class="pub-authors">J. Lee, Q. Lai-Dang, <span class="me">N. Sengar</span>, D. Har</div>
+        <div class="pub-venue">ECAI 2024</div>
+    </div>
+    <div class="pub-item">
+        <div class="pub-title">Pneumocystis Jirovecii Fungi Detection Using Microscopy Image: A Deep Learning Approach</div>
+        <div class="pub-authors"><span class="me">N. Sengar</span>, T. Pan, S. Das, K.B. Singh, S.C. Misra</div>
+        <div class="pub-venue">ICAIE 2023, Springer</div>
+    </div>
+
+    <div style="text-align:center; padding: 20px 0;">
+        <a href="https://scholar.google.com/citations?user=FlF_MsEAAAAJ&hl=en" target="_blank" style="font-size:14px; color:var(--accent); text-decoration:none; font-weight:500;">
+            View all publications on Google Scholar →
+        </a>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <div class="section-header"><h2>Experience</h2></div>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-role">Graduate Research Assistant</span>
+                <span class="timeline-date">Feb 2023 – Present</span>
+            </div>
+            <div class="timeline-org">Vehicular Intelligence Lab, KAIST</div>
+            <ul class="timeline-desc">
+                <li>Developed training-free visual grounding and segmentation methods via contrastive attention head discovery in frozen LVLMs</li>
+                <li>Built vision-based 6DOF pose estimation system for autonomous EV charging robot</li>
+                <li>Developed perception pipeline for dual parking robot, achieving ≤2° alignment error</li>
+                <li>Mentored 2 M.S. students</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-role">Junior Research Fellow</span>
+                <span class="timeline-date">Jun 2022 – Jan 2023</span>
+            </div>
+            <div class="timeline-org">Indian Institute of Technology Kanpur</div>
+            <ul class="timeline-desc">
+                <li>Built microcontroller blockchain network with edge-cloud interplay for secure agricultural data collection (MEITY-funded)</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-role">Junior Research Fellow</span>
+                <span class="timeline-date">Aug 2021 – May 2022</span>
+            </div>
+            <div class="timeline-org">Centre for Advanced Studies, Lucknow</div>
+            <ul class="timeline-desc">
+                <li>Developed AI-based assistive device for visually impaired users with real-time scene captioning (DST-funded)</li>
+                <li>Developed low-cost IoT-based intelligent stethoscope with embedded AI for early diagnosis (DST-funded)</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-header">
+                <span class="timeline-role">AI Intern</span>
+                <span class="timeline-date">May 2021 – Aug 2021</span>
+            </div>
+            <div class="timeline-org">Farm365 Innovations (Startup)</div>
+            <ul class="timeline-desc">
+                <li>Developed neural network models for automated animal intrusion detection in agricultural fields</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICE -->
+<section id="service">
+    <div class="section-header"><h2>Professional Service</h2></div>
+    <div class="service-grid">
+        <div class="service-box">
+            <h3>Conference Reviewer</h3>
+            <div class="service-tags">
+                <span class="service-tag top">ICML 2026</span>
+                <span class="service-tag top">IJCAI 2026</span>
+                <span class="service-tag top">NeurIPS 2025</span>
+                <span class="service-tag regular">IV 2025</span>
+            </div>
+        </div>
+        <div class="service-box">
+            <h3>Journal Reviewer</h3>
+            <div class="service-tags">
+                <span class="service-tag regular">IEEE T-ITS (2026)</span>
+                <span class="service-tag regular">IEEE Sensors (2023–2026)</span>
+                <span class="service-tag regular">IEEE IoT (2024)</span>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top:20px;">
+        <div class="service-box">
+            <h3>Invited Talk</h3>
+            <div class="service-tags">
+                <span class="service-tag regular">Vision-Language Models for Scene Understanding in Autonomous Driving · Amity University, 2025</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="section-header"><h2>Contact</h2></div>
+    <div class="contact-bar">
+        <p>I'd love to hear from you — whether about research collaborations, opportunities, or ideas.</p>
+        <a href="mailto:neha.sengar@kaist.ac.kr" class="email-link">
+            <i class="fas fa-envelope"></i> neha.sengar@kaist.ac.kr
+        </a>
+    </div>
+</section>
+
+</div>
+
+<footer>© 2026 Neha Sengar · PhD Candidate, KAIST</footer>
+
+</body>
+</html>
