@@ -70,7 +70,7 @@
         .nav-cta:hover{background:var(--accent-dark);color:#fff!important;transform:translateY(-1px);box-shadow:var(--shadow-md)}
         .mobile-toggle{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text)}
         .hero-wrap{position:relative;overflow:hidden;border-bottom:1px solid var(--border-light)}
-        #attn-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.92}
+        #cursor-glow{position:fixed;top:0;left:0;width:560px;height:560px;border-radius:50%;pointer-events:none;z-index:300;transform:translate(-9999px,-9999px) translate(-50%,-50%);background:radial-gradient(circle,rgba(255,248,222,.58) 0%,rgba(255,235,170,.38) 16%,rgba(255,224,140,.18) 38%,rgba(255,216,125,.06) 58%,rgba(255,212,120,0) 72%);opacity:0;transition:opacity .45s ease;will-change:transform}
         .hero-fade{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 90% at 18% 38%,rgba(244,246,248,.97) 0%,rgba(244,246,248,.87) 38%,rgba(244,246,248,.55) 72%,rgba(244,246,248,.34) 100%)}
         .hero{max-width:var(--maxw);margin:0 auto;padding:66px 32px 44px;display:grid;grid-template-columns:210px 1fr;gap:56px;align-items:start;position:relative;z-index:2}
         .hero-photo-wrap{position:relative}
@@ -107,8 +107,8 @@
         .epigraph::before{content:'\201C';font-family:var(--serif);font-size:70px;color:var(--accent-soft);position:absolute;top:-6px;left:50%;transform:translateX(-50%);line-height:1;transition:color .4s}
         .epigraph:hover::before{color:var(--accent-light)}
         .epigraph p{font-family:var(--serif);font-style:italic;font-size:20.5px;line-height:1.62;color:var(--ink);margin-top:26px;position:relative}
-        .epigraph cite{display:inline-block;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-top:16px}
-        .epigraph cite::before{content:'';display:inline-block;width:22px;height:1px;background:var(--accent);vertical-align:middle;margin-right:9px}
+        .epigraph cite{display:block;font-style:italic;font-family:var(--serif);font-size:15.5px;letter-spacing:0;text-transform:none;color:var(--text-secondary);margin-top:18px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.5}
+        .epigraph cite::before{content:'';display:block;width:30px;height:1px;background:var(--accent);margin:0 auto 12px}
         /* Research */
         .research-intro{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px 38px;margin-bottom:24px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
         .research-intro::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--accent-light),var(--accent))}
@@ -258,15 +258,16 @@
             .nav-links.open .nav-cta{margin-top:4px}
             .mobile-toggle{display:block}
         }
-        @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}#attn-canvas{display:none}}
+        @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}#cursor-glow{display:none}}
     </style>
 </head>
 <body>
 <div id="progress"></div>
+<div id="cursor-glow" aria-hidden="true"></div>
 
 <nav>
     <div class="nav-inner">
-        <a href="#" class="nav-name">Neha Sengar<span class="dot">.</span></a>
+        <a href="#" class="nav-name">Neha Sengar</a>
         <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
         <div class="nav-links">
             <a href="#research">Research</a>
@@ -282,7 +283,6 @@
 </nav>
 
 <div class="hero-wrap">
-    <canvas id="attn-canvas" aria-hidden="true"></canvas>
     <div class="hero-fade"></div>
     <header class="hero">
         <div class="hero-photo-wrap">
@@ -320,12 +320,12 @@
     <div class="section-header reveal"><span class="eyebrow">FOCUS</span><h2>Research</h2></div>
     <blockquote class="epigraph reveal">
         <p>Light passing through one slit creates a blur; through two slits, it creates a pattern. In the same way, new ideas often emerge when different perspectives come together.</p>
-        <cite>the intuition behind dual, contrastive prompting</cite>
+        <cite>physical reality isn't composed of concrete objects, but rather probabilities, dependent on the act of measurement.</cite>
     </blockquote>
     <div class="research-intro reveal"><p>My dissertation asks whether frozen Large Vision-Language Models already encode enough spatial grounding knowledge in their attention heads to perform visual understanding — <strong>without any labeled data, fine-tuning, or architectural change</strong>. The central finding: a small subset of <strong>contrastive grounding heads</strong> can be discovered automatically through dual prompting with semantically opposing descriptions, and their differential attention aggregated into precise spatial signals.</p></div>
     <div class="research-cards">
         <div class="research-card reveal"><div class="rc-icon"><i class="fas fa-crosshairs"></i></div><h3>Referring Expression Comprehension</h3><p>Training-free attention-head discovery; outperforms training-free baselines by up to 27.95% on RefCOCO.</p><span class="badge">Under review · TMLR</span></div>
-        <div class="research-card reveal"><div class="rc-icon"><i class="fas fa-object-group"></i></div><h3>Referring Expression Segmentation</h3><p>Extended to pixel-level masks via spectral label propagation — competitive with supervised methods, no external segmentation model.</p><span class="badge">Under review · IEEE SPL</span></div>
+        <div class="research-card reveal"><div class="rc-icon"><i class="fas fa-object-group"></i></div><h3>Referring Expression Segmentation</h3><p>Extended to pixel-level masks via spectral label propagation — competitive with supervised methods, no external segmentation model.</p><span class="badge">Under review · TCSVT</span></div>
         <div class="research-card reveal"><div class="rc-icon"><i class="fas fa-comments"></i></div><h3>Visual Question Answering</h3><p>Generalizing contrastive head discovery to open-ended visual reasoning tasks.</p><span class="badge prog">In progress</span></div>
     </div>
 </section>
@@ -337,7 +337,7 @@
     <div class="reveal">
     <div class="pub-category">Under Review</div>
     <div class="pub-item"><div class="pub-title">Few Contrastive Attention Heads Enable Visual Grounding in Large Vision-Language Models</div><div class="pub-authors"><span class="me">N. Sengar</span><sup>†</sup>, A. Saurez, D. Har</div><div class="pub-venue">Transactions on Machine Learning Research (TMLR), 2026</div></div>
-    <div class="pub-item"><div class="pub-title">CAGSeg: Training-Free Referring Segmentation via Contrastive Attention Grounding in Vision-Language Models</div><div class="pub-authors"><span class="me">N. Sengar</span><sup>†</sup>, A. Saurez, D. Har</div><div class="pub-venue">IEEE Signal Processing Letters, 2026</div></div>
+    <div class="pub-item"><div class="pub-title">CAGSeg: Training-Free Referring Segmentation via Contrastive Attention Grounding in Vision-Language Models</div><div class="pub-authors"><span class="me">N. Sengar</span><sup>†</sup>, A. Saurez, D. Har</div><div class="pub-venue">IEEE Transactions on Circuits and Systems for Video Technology (TCSVT), 2026</div></div>
     <div class="pub-item"><div class="pub-title">Vision-Based Tire Lifting for Parking by Dual Parking Robot</div><div class="pub-authors"><span class="me">N. Sengar</span>, Y. Lee, K. Won Ko, D. Har, S. Lee<sup>†</sup></div><div class="pub-venue">IEEE Sensors Journal, 2025</div></div>
     </div>
     <div class="reveal">
@@ -478,9 +478,9 @@
     <div class="skills-grid">
         <div class="skill-group reveal"><h3><i class="fas fa-code"></i> Programming</h3><div class="chips"><span class="chip">Python (advanced)</span><span class="chip">Embedded C/C++</span><span class="chip">CUDA</span></div></div>
         <div class="skill-group reveal"><h3><i class="fas fa-brain"></i> ML / Deep Learning</h3><div class="chips"><span class="chip">Transformers</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Hugging Face</span></div></div>
-        <div class="skill-group reveal"><h3><i class="fas fa-eye"></i> Computer Vision</h3><div class="chips"><span class="chip">OpenCV</span><span class="chip">6DOF Pose Estimation</span><span class="chip">Open3D</span></div></div>
-        <div class="skill-group reveal"><h3><i class="fas fa-microchip"></i> Robotics Hardware</h3><div class="chips"><span class="chip">Raspberry Pi</span><span class="chip">RealSense D435i</span><span class="chip">Sony IMX415</span><span class="chip">Livox Mid-70 LiDAR</span><span class="chip">ESP32</span></div></div>
-        <div class="skill-group reveal" style="grid-column:1 / -1;"><h3><i class="fas fa-screwdriver-wrench"></i> Tools</h3><div class="chips"><span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">LaTeX</span><span class="chip">Arduino IDE</span><span class="chip">Edge Impulse</span><span class="chip">Roboflow</span></div></div>
+        <div class="skill-group reveal"><h3><i class="fas fa-eye"></i> Computer Vision</h3><div class="chips"><span class="chip">OpenCV</span><span class="chip">6DOF Pose Estimation</span><span class="chip">BEV Rendering</span><span class="chip">Open3D</span></div></div>
+        <div class="skill-group reveal"><h3><i class="fas fa-microchip"></i> Robotics Hardware</h3><div class="chips"><span class="chip">Raspberry Pi</span><span class="chip">LattePanda Sigma</span><span class="chip">RealSense D435i</span><span class="chip">Sony IMX415</span><span class="chip">Livox Mid-70 LiDAR</span><span class="chip">ESP32</span></div></div>
+        <div class="skill-group reveal" style="grid-column:1 / -1;"><h3><i class="fas fa-screwdriver-wrench"></i> Tools</h3><div class="chips"><span class="chip">ROS</span><span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">LaTeX</span><span class="chip">Arduino IDE</span><span class="chip">Edge Impulse</span><span class="chip">Roboflow</span></div></div>
     </div>
 </section>
 
@@ -585,30 +585,16 @@ window.addEventListener('scroll',function(){toTop.classList.toggle('show',window
 toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
 (function(){
+    var fine=window.matchMedia&&window.matchMedia('(pointer:fine)').matches;
     var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduce)return;
-    var canvas=document.getElementById('attn-canvas');if(!canvas)return;
-    var ctx=canvas.getContext('2d');var wrap=canvas.parentElement;
-    var cell=26,cols=0,rows=0,W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2);
-    var mouse={x:-9999,y:-9999},t=0;
-    function heat(v){var c1=[228,238,242],c2=[94,147,166],c3=[18,62,77];var r,g,b;
-        if(v<0.55){var k=v/0.55;r=c1[0]+(c2[0]-c1[0])*k;g=c1[1]+(c2[1]-c1[1])*k;b=c1[2]+(c2[2]-c1[2])*k;}
-        else{var k2=(v-0.55)/0.45;r=c2[0]+(c3[0]-c2[0])*k2;g=c2[1]+(c3[1]-c2[1])*k2;b=c2[2]+(c3[2]-c2[2])*k2;}
-        return [r|0,g|0,b|0];}
-    function resize(){W=wrap.clientWidth;H=wrap.clientHeight;canvas.width=W*dpr;canvas.height=H*dpr;canvas.style.width=W+'px';canvas.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);cols=Math.ceil(W/cell)+1;rows=Math.ceil(H/cell)+1;}
-    function draw(){t+=0.012;ctx.clearRect(0,0,W,H);
-        for(var i=0;i<cols;i++){for(var j=0;j<rows;j++){
-            var cx=i*cell+cell/2,cy=j*cell+cell/2;
-            var amb=0.5+0.5*Math.sin(i*0.45+t)*Math.cos(j*0.4-t*0.8);amb*=0.45;
-            var dx=cx-mouse.x,dy=cy-mouse.y,d2=dx*dx+dy*dy;var focus=Math.exp(-d2/(2*120*120));
-            var v=Math.min(1,amb*0.55+focus*0.95);if(v<0.04)continue;
-            var col=heat(v);var size=cell*0.34*(0.5+v*0.9);var alpha=0.09+v*0.46;
-            ctx.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+alpha+')';
-            ctx.beginPath();ctx.roundRect?ctx.roundRect(cx-size/2,cy-size/2,size,size,3):ctx.rect(cx-size/2,cy-size/2,size,size);ctx.fill();
-        }}requestAnimationFrame(draw);}
-    wrap.addEventListener('mousemove',function(e){var r=wrap.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;});
-    wrap.addEventListener('mouseleave',function(){mouse.x=-9999;mouse.y=-9999;});
-    window.addEventListener('resize',resize);resize();draw();
+    var glow=document.getElementById('cursor-glow');
+    if(!glow)return;
+    if(!fine||reduce){glow.style.display='none';return;}
+    var tx=window.innerWidth/2,ty=-500,cx=tx,cy=ty;
+    function loop(){cx+=(tx-cx)*0.16;cy+=(ty-cy)*0.16;glow.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';requestAnimationFrame(loop);}
+    window.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;glow.style.opacity='1';},{passive:true});
+    document.addEventListener('mouseleave',function(){glow.style.opacity='0';});
+    loop();
 })();
 
 var map=L.map('collab-map',{scrollWheelZoom:false,zoomControl:true,attributionControl:true}).setView([30,60],2);
