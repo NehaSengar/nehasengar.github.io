@@ -70,7 +70,7 @@
         .nav-cta:hover{background:var(--accent-dark);color:#fff!important;transform:translateY(-1px);box-shadow:var(--shadow-md)}
         .mobile-toggle{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text)}
         .hero-wrap{position:relative;overflow:hidden;border-bottom:1px solid var(--border-light)}
-        #cursor-glow{position:fixed;top:0;left:0;width:560px;height:560px;border-radius:50%;pointer-events:none;z-index:300;transform:translate(-9999px,-9999px) translate(-50%,-50%);background:radial-gradient(circle,rgba(255,248,222,.58) 0%,rgba(255,235,170,.38) 16%,rgba(255,224,140,.18) 38%,rgba(255,216,125,.06) 58%,rgba(255,212,120,0) 72%);opacity:0;transition:opacity .45s ease;will-change:transform}
+        #star-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:300}
         .hero-fade{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 90% at 18% 38%,rgba(244,246,248,.97) 0%,rgba(244,246,248,.87) 38%,rgba(244,246,248,.55) 72%,rgba(244,246,248,.34) 100%)}
         .hero{max-width:var(--maxw);margin:0 auto;padding:66px 32px 44px;display:grid;grid-template-columns:210px 1fr;gap:56px;align-items:start;position:relative;z-index:2}
         .hero-photo-wrap{position:relative}
@@ -127,7 +127,8 @@
         .badge.prog{color:var(--accent-light);background:var(--surface-alt);border:1px solid var(--border)}
         /* Logo badge + record list (Education / Experience) */
         .logo-badge{width:54px;height:54px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:12.5px;letter-spacing:.01em;box-shadow:var(--shadow-sm);transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s;flex-shrink:0;overflow:hidden}
-        .logo-badge img{width:100%;height:100%;object-fit:contain;background:#fff}
+        .logo-badge img{width:100%;height:100%;object-fit:contain}
+        .logo-badge.logo-img{background:#fff;border:1px solid var(--border);padding:6px}
         .rec-list{display:flex;flex-direction:column;gap:14px}
         .rec-item{display:grid;grid-template-columns:54px 1fr;gap:18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s,border-color .25s}
         .rec-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--accent-light)}
@@ -258,12 +259,12 @@
             .nav-links.open .nav-cta{margin-top:4px}
             .mobile-toggle{display:block}
         }
-        @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}#cursor-glow{display:none}}
+        @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}#star-canvas{display:none}}
     </style>
 </head>
 <body>
 <div id="progress"></div>
-<div id="cursor-glow" aria-hidden="true"></div>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
 
 <nav>
     <div class="nav-inner">
@@ -369,7 +370,7 @@
     <div class="section-header reveal"><span class="eyebrow">ACADEMICS</span><h2>Education</h2></div>
     <div class="rec-list">
         <div class="rec-item reveal">
-            <div class="logo-badge">KAIST</div>
+            <div class="logo-badge logo-img"><img src="KAIST_logo.svg.png" alt="KAIST logo"></div>
             <div>
                 <div class="rec-head"><span class="rec-role">Ph.D. in Robotics Program</span><span class="rec-date">Feb 2023 – Jan 2027 (expected)</span></div>
                 <div class="rec-org">Korea Advanced Institute of Science and Technology (KAIST), Daejeon, Republic of Korea</div>
@@ -378,7 +379,7 @@
             </div>
         </div>
         <div class="rec-item reveal">
-            <div class="logo-badge">CAS</div>
+            <div class="logo-badge logo-img"><img src="centre_for_advanced_studies_logo.avif" alt="Centre for Advanced Studies logo"></div>
             <div>
                 <div class="rec-head"><span class="rec-role">M. Tech. in Computer Science &amp; Engineering</span><span class="rec-date">Aug 2019 – Jul 2021</span></div>
                 <div class="rec-org">Centre for Advanced Studies, Lucknow, India</div>
@@ -399,7 +400,7 @@
     <div class="section-header reveal"><span class="eyebrow">PATH</span><h2>Research Experience</h2></div>
     <div class="rec-list">
         <div class="rec-item reveal">
-            <div class="logo-badge">KAIST</div>
+            <div class="logo-badge logo-img"><img src="KAIST_logo.svg.png" alt="KAIST logo"></div>
             <div>
                 <div class="rec-head"><span class="rec-role">Graduate Research Assistant</span><span class="rec-date">Feb 2023 – Present</span></div>
                 <div class="rec-org">Vehicular Intelligence Lab, KAIST</div>
@@ -413,7 +414,7 @@
             </div>
         </div>
         <div class="rec-item reveal">
-            <div class="logo-badge">IITK</div>
+            <div class="logo-badge logo-img"><img src="IIT_Kanpur_Logo_svg.avif" alt="IIT Kanpur logo"></div>
             <div>
                 <div class="rec-head"><span class="rec-role">Junior Research Fellow</span><span class="rec-date">Jun 2022 – Jan 2023</span></div>
                 <div class="rec-org">Indian Institute of Technology Kanpur</div>
@@ -422,7 +423,7 @@
             </div>
         </div>
         <div class="rec-item reveal">
-            <div class="logo-badge">CAS</div>
+            <div class="logo-badge logo-img"><img src="centre_for_advanced_studies_logo.avif" alt="Centre for Advanced Studies logo"></div>
             <div>
                 <div class="rec-head"><span class="rec-role">Junior Research Fellow</span><span class="rec-date">Aug 2021 – May 2022</span></div>
                 <div class="rec-org">Centre for Advanced Studies, Lucknow</div>
@@ -434,7 +435,7 @@
             </div>
         </div>
         <div class="rec-item reveal">
-            <div class="logo-badge">F365</div>
+            <div class="logo-badge logo-img"><img src="farm365-innovationsr-698b71ee.avif" alt="Farm365 Innovations logo"></div>
             <div>
                 <div class="rec-head"><span class="rec-role">Artificial Intelligence Intern</span><span class="rec-date">May 2021 – Aug 2021</span></div>
                 <div class="rec-org">Farm365 Innovations (Startup)</div>
@@ -442,7 +443,7 @@
             </div>
         </div>
         <div class="rec-item reveal">
-            <div class="logo-badge">IITK</div>
+            <div class="logo-badge logo-img"><img src="IIT_Kanpur_Logo_svg.avif" alt="IIT Kanpur logo"></div>
             <div>
                 <div class="rec-head"><span class="rec-role">KIT Winter Internship Program</span><span class="rec-date">Dec 2019 – Jan 2020</span></div>
                 <div class="rec-org">Indian Institute of Technology Kanpur</div>
@@ -587,14 +588,29 @@ toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smoot
 (function(){
     var fine=window.matchMedia&&window.matchMedia('(pointer:fine)').matches;
     var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var glow=document.getElementById('cursor-glow');
-    if(!glow)return;
-    if(!fine||reduce){glow.style.display='none';return;}
-    var tx=window.innerWidth/2,ty=-500,cx=tx,cy=ty;
-    function loop(){cx+=(tx-cx)*0.16;cy+=(ty-cy)*0.16;glow.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';requestAnimationFrame(loop);}
-    window.addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;glow.style.opacity='1';},{passive:true});
-    document.addEventListener('mouseleave',function(){glow.style.opacity='0';});
-    loop();
+    var cv=document.getElementById('star-canvas');
+    if(!cv)return;
+    if(!fine||reduce){cv.style.display='none';return;}
+    var ctx=cv.getContext('2d'),dpr=Math.min(window.devicePixelRatio||1,2),W,H;
+    function resize(){W=window.innerWidth;H=window.innerHeight;cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);}
+    window.addEventListener('resize',resize);resize();
+    var mx=W/2,my=-200,hx=mx,hy=my,phx=hx,phy=hy,hist=[],sparks=[];
+    window.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;},{passive:true});
+    function frame(){
+        phx=hx;phy=hy;
+        hx+=(mx-hx)*0.2;hy+=(my-hy)*0.2;
+        var vx=hx-phx,vy=hy-phy,speed=Math.sqrt(vx*vx+vy*vy);
+        hist.unshift({x:hx,y:hy});if(hist.length>15)hist.pop();
+        if(speed>5){for(var s=0;s<2;s++){sparks.push({x:hx,y:hy,vx:(Math.random()-0.5)*1.3-vx*0.12,vy:(Math.random()-0.5)*1.3-vy*0.12+0.25,life:1,size:Math.random()*1.6+0.7});}}
+        ctx.clearRect(0,0,W,H);
+        for(var i=hist.length-1;i>=0;i--){var p=hist[i],t=1-i/hist.length,r=t*3.4+0.4,a=t*0.5;ctx.fillStyle='rgba(255,'+Math.round(176+58*t)+','+Math.round(66+70*t)+','+a+')';ctx.beginPath();ctx.arc(p.x,p.y,r,0,6.283);ctx.fill();}
+        for(var k=sparks.length-1;k>=0;k--){var sp=sparks[k];sp.x+=sp.vx;sp.y+=sp.vy;sp.vy+=0.02;sp.life-=0.028;if(sp.life<=0){sparks.splice(k,1);continue;}ctx.globalAlpha=Math.max(0,sp.life);ctx.fillStyle='rgba(250,188,78,1)';ctx.beginPath();ctx.arc(sp.x,sp.y,sp.size*sp.life,0,6.283);ctx.fill();}
+        ctx.globalAlpha=1;
+        var g=ctx.createRadialGradient(hx,hy,0,hx,hy,15);g.addColorStop(0,'rgba(255,250,235,0.95)');g.addColorStop(0.32,'rgba(255,212,120,0.5)');g.addColorStop(1,'rgba(255,206,110,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(hx,hy,15,0,6.283);ctx.fill();
+        ctx.fillStyle='rgba(255,253,244,0.95)';ctx.beginPath();ctx.arc(hx,hy,1.8,0,6.283);ctx.fill();
+        requestAnimationFrame(frame);
+    }
+    frame();
 })();
 
 var map=L.map('collab-map',{scrollWheelZoom:false,zoomControl:true,attributionControl:true}).setView([30,60],2);
