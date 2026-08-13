@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neha Sengar | PhD Candidate, KAIST — Vision-Language Models & Robotics</title>
+    <meta name="description" content="Neha Sengar is a PhD candidate at KAIST researching mechanistic interpretability of large vision-language models for training-free visual grounding, segmentation, and autonomous robotics.">
+    <meta name="keywords" content="Neha Sengar, KAIST, PhD, vision-language models, LVLM, mechanistic interpretability, visual grounding, referring expression comprehension, referring expression segmentation, autonomous driving, robotics, computer vision, attention heads, Dongsoo Har">
+    <meta name="author" content="Neha Sengar">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nehasengar.github.io/">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Neha Sengar | PhD Candidate, KAIST">
+    <meta property="og:description" content="PhD candidate at KAIST researching mechanistic interpretability of large vision-language models and autonomous robotics.">
+    <meta property="og:image" content="https://nehasengar.github.io/profile_pic.png">
+    <meta property="og:url" content="https://nehasengar.github.io/">
+    <meta property="og:site_name" content="Neha Sengar">
+    <meta property="profile:first_name" content="Neha">
+    <meta property="profile:last_name" content="Sengar">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Neha Sengar | PhD Candidate, KAIST">
+    <meta name="twitter:description" content="PhD candidate at KAIST researching vision-language models and autonomous robotics.">
+    <meta name="twitter:image" content="https://nehasengar.github.io/profile_pic.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,0,700;9..144,1,400;9..144,1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org","@type": "Person","name": "Neha Sengar","givenName": "Neha","familyName": "Sengar",
+        "jobTitle": "PhD Candidate in Robotics",
+        "description": "PhD candidate at KAIST researching mechanistic interpretability of large vision-language models for training-free visual understanding, and vision-based perception for autonomous robots.",
+        "image": "https://nehasengar.github.io/profile_pic.png","url": "https://nehasengar.github.io/","email": "mailto:neha.sengar@kaist.ac.kr",
+        "affiliation": {"@type": "CollegeOrUniversity","name": "Korea Advanced Institute of Science and Technology (KAIST)","url": "https://www.kaist.ac.kr/"},
+        "alumniOf": [{ "@type": "CollegeOrUniversity", "name": "Centre for Advanced Studies, Lucknow" }],
+        "knowsAbout": ["Vision-Language Models","Mechanistic Interpretability","Visual Grounding","Referring Expression Comprehension","Referring Expression Segmentation","Autonomous Robotics","Computer Vision","Deep Learning"],
+        "sameAs": ["https://scholar.google.com/citations?user=FlF_MsEAAAAJ&hl=en","https://linkedin.com/in/neha-sengar-804a24123","https://github.com/nehasengar"]
+    }
+    </script>
+    <style>
+        :root{
+            --bg:#FFFFFF;--surface:#FFFFFF;--surface-alt:#F5F8FA;
+            --ink:#15222E;--text:#293744;--text-secondary:#5B6875;--text-light:#98A2AD;
+            --accent:#1C5A70;--accent-dark:#123E4D;--accent-soft:#E4EEF2;--accent-light:#5E93A6;
+            --border:#DBE1E6;--border-light:#E9EDF0;
+            --shadow-sm:0 1px 3px rgba(20,40,55,.05),0 1px 2px rgba(20,40,55,.04);
+            --shadow-md:0 6px 20px rgba(20,40,55,.07),0 2px 6px rgba(20,40,55,.04);
+            --shadow-lg:0 18px 50px rgba(20,40,55,.13),0 6px 16px rgba(20,40,55,.06);
+            --serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+            --radius:14px;--maxw:1000px
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;background:linear-gradient(90deg,var(--accent-light),var(--accent));transition:width .08s linear}
+        nav{position:sticky;top:0;z-index:120;background:rgba(255,255,255,.85);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border-light)}
+        .nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:62px}
+        .nav-name{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+        .nav-name .dot{color:var(--accent)}
+        .nav-links{display:flex;gap:22px;align-items:center}
+        .nav-links a{text-decoration:none;color:var(--text-secondary);font-size:13.5px;font-weight:500;transition:color .25s;position:relative;padding:4px 0}
+        .nav-links a:hover{color:var(--accent)}
+        .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--accent);transition:width .25s;border-radius:2px}
+        .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+        .nav-links a.active{color:var(--accent)}
+        .nav-cta{display:inline-flex;align-items:center;gap:7px;font-size:12.5px!important;font-weight:600!important;color:#fff!important;background:var(--accent);padding:8px 16px!important;border-radius:8px;box-shadow:var(--shadow-sm);transition:all .25s}
+        .nav-cta::after{display:none!important}
+        .nav-cta:hover{background:var(--accent-dark);color:#fff!important;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+        .mobile-toggle{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text)}
+        .hero-wrap{position:relative;overflow:hidden;border-bottom:1px solid var(--border-light)}
+        #star-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:300}
+        .hero-fade{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 90% at 18% 38%,rgba(255,255,255,.97) 0%,rgba(255,255,255,.85) 38%,rgba(255,255,255,.5) 72%,rgba(255,255,255,.3) 100%)}
+        .hero{max-width:var(--maxw);margin:0 auto;padding:66px 32px 44px;display:grid;grid-template-columns:210px 1fr;gap:56px;align-items:start;position:relative;z-index:2}
+        .hero-photo-wrap{position:relative}
+        .hero-photo-wrap::before{content:'';position:absolute;top:10px;left:10px;width:100%;height:100%;border-radius:50%;background:var(--accent-soft);z-index:0}
+        .hero-photo{width:210px;height:210px;border-radius:50%;object-fit:cover;border:5px solid var(--surface);box-shadow:var(--shadow-lg);position:relative;z-index:1;background:linear-gradient(135deg,var(--accent-soft),#cfe2e8)}
+        .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:5px 13px;border-radius:6px;margin-bottom:16px}
+        .hero-info h1{font-family:var(--serif);font-size:48px;font-weight:600;line-height:1.06;margin-bottom:8px;letter-spacing:-.02em;color:var(--ink)}
+        .hero-subtitle{font-size:18px;color:var(--accent);font-weight:600;margin-bottom:4px}
+        .hero-affiliation{font-size:14px;color:var(--text-secondary);margin-bottom:20px}
+        .hero-bio{font-size:15.5px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;max-width:600px}
+        .hero-bio strong{color:var(--text);font-weight:600}
+        .hero-links{display:flex;gap:10px;flex-wrap:wrap}
+        .hero-links a{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--text-secondary);text-decoration:none;padding:9px 16px;background:var(--surface);border:1px solid var(--border);border-radius:9px;transition:all .25s;font-weight:500;box-shadow:var(--shadow-sm)}
+        .hero-links a:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+        .hero-links a.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+        .hero-links a.primary:hover{background:var(--accent-dark);color:#fff}
+        .hero-links a i{font-size:14px}
+        .stats{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:2}
+        .stats-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin-top:-4px}
+        .stat{padding:22px 20px;text-align:center;border-right:1px solid var(--border-light);transition:background .25s}
+        .stat:last-child{border-right:none}
+        .stat:hover{background:var(--surface-alt)}
+        .stat-num{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--accent);line-height:1}
+        .stat-num .suffix{font-size:22px}
+        .stat-label{font-size:11.5px;font-weight:500;color:var(--text-secondary);margin-top:7px;text-transform:uppercase;letter-spacing:.06em}
+        .container{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+        section{padding:54px 0}
+        .section-header{display:flex;align-items:center;gap:16px;margin-bottom:30px}
+        .section-header h2{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+        .section-header .eyebrow{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:500;background:var(--accent-soft);padding:4px 9px;border-radius:5px}
+        .section-header::after{content:'';flex:1;height:1px;background:var(--border)}
+        /* Epigraph */
+        .epigraph{max-width:790px;margin:0 auto 30px;text-align:center;position:relative;padding:22px 30px 8px}
+        .epigraph::before{content:'\201C';font-family:var(--serif);font-size:70px;color:var(--accent-soft);position:absolute;top:-6px;left:50%;transform:translateX(-50%);line-height:1;transition:color .4s}
+        .epigraph:hover::before{color:var(--accent-light)}
+        .epigraph p{font-family:var(--serif);font-style:italic;font-size:20.5px;line-height:1.62;color:var(--ink);margin-top:26px;position:relative}
+        .epigraph cite{display:block;font-style:italic;font-family:var(--serif);font-size:15.5px;letter-spacing:0;text-transform:none;color:var(--text-secondary);margin-top:18px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.5}
+        .epigraph cite::before{content:'';display:block;width:30px;height:1px;background:var(--accent);margin:0 auto 12px}
+        /* Research */
+        .research-intro{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px 38px;margin-bottom:24px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+        .research-intro::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--accent-light),var(--accent))}
+        .research-intro p{font-size:15.5px;color:var(--text-secondary);line-height:1.85}
+        .research-intro strong{color:var(--text);font-weight:600}
+        .research-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+        .research-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .3s;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+        .research-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-light));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+        .research-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+        .research-card:hover::after{transform:scaleX(1)}
+        .research-card .rc-icon{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:13px;transition:all .3s}
+        .research-card:hover .rc-icon{background:var(--accent);color:#fff;transform:rotate(-6deg)}
+        .research-card h3{font-size:15px;font-weight:600;margin-bottom:8px;line-height:1.35;color:var(--text)}
+        .research-card p{font-size:13px;color:var(--text-secondary);line-height:1.65}
+        .badge{display:inline-block;margin-top:13px;font-size:10.5px;font-family:var(--mono);font-weight:500;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:5px}
+        .badge.prog{color:var(--accent-light);background:var(--surface-alt);border:1px solid var(--border)}
+        /* Logo badge + record list (Education / Experience) */
+        .logo-badge{width:54px;height:54px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:12.5px;letter-spacing:.01em;box-shadow:var(--shadow-sm);transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s;flex-shrink:0;overflow:hidden}
+        .logo-badge img{width:100%;height:100%;object-fit:contain}
+        .logo-badge.logo-img{background:#fff;border:1px solid var(--border);padding:6px}
+        .rec-list{display:flex;flex-direction:column;gap:14px}
+        .rec-item{display:grid;grid-template-columns:54px 1fr;gap:18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s,border-color .25s}
+        .rec-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--accent-light)}
+        .rec-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+        .rec-role{font-weight:600;font-size:15.5px;color:var(--text)}
+        .rec-date{font-family:var(--mono);font-size:12px;color:var(--text-light);white-space:nowrap}
+        .rec-org{font-size:14px;color:var(--accent);font-weight:500;margin-bottom:2px}
+        .rec-adv{font-size:13px;color:var(--text-secondary);margin-bottom:8px}
+        .rec-adv strong{color:var(--text);font-weight:600}
+        .rec-diss{font-size:13px;color:var(--text-secondary);font-style:italic;margin-bottom:4px}
+        .rec-desc{list-style:none}
+        .rec-desc li{font-size:13.5px;color:var(--text-secondary);line-height:1.65;padding-left:16px;position:relative;margin-bottom:4px}
+        .rec-desc li::before{content:'–';position:absolute;left:0;color:var(--accent)}
+        /* Publications */
+        .pub-legend{font-size:12px;color:var(--text-light);font-style:italic;margin-bottom:18px}
+        .pub-category{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:16px;margin-top:34px;display:flex;align-items:center;gap:12px}
+        .pub-category:first-of-type{margin-top:0}
+        .pub-category::after{content:'';flex:1;height:1px;background:var(--border-light)}
+        .pub-item{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:20px 24px;margin-bottom:10px;box-shadow:var(--shadow-sm);transition:all .25s;border-left:3px solid transparent}
+        .pub-item:hover{border-left-color:var(--accent);box-shadow:var(--shadow-md);transform:translateX(3px)}
+        .pub-title{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:6px}
+        .pub-authors{font-size:13.5px;color:var(--text-secondary);margin-bottom:4px}
+        .pub-authors .me{font-weight:600;color:var(--accent-dark);border-bottom:1.5px solid var(--accent-soft)}
+        .pub-authors sup{color:var(--accent);font-weight:600}
+        .pub-venue{font-size:13px;color:var(--accent);font-weight:500}
+        .pub-links{margin-top:8px}
+        .pub-links a{font-size:12px;font-family:var(--mono);color:var(--accent);text-decoration:none;padding:3px 10px;border:1px solid var(--border);border-radius:5px;margin-right:6px;transition:all .2s;font-weight:500}
+        .pub-links a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+        /* Projects */
+        .project-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);margin-bottom:20px;transition:all .3s}
+        .project-item:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+        .project-content{display:grid;grid-template-columns:1fr 340px;gap:0}
+        .project-content.reverse{grid-template-columns:340px 1fr}
+        .project-text{padding:32px 36px;display:flex;flex-direction:column;justify-content:center}
+        .project-text h3{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:12px;color:var(--ink)}
+        .project-text p{font-size:14px;color:var(--text-secondary);line-height:1.75}
+        .project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+        .project-tag{font-size:11.5px;font-family:var(--mono);padding:3px 10px;background:var(--accent-soft);color:var(--accent-dark);border-radius:4px;font-weight:500}
+        .project-images{background:var(--surface-alt);display:flex;align-items:center;justify-content:center;padding:24px;min-height:240px;border-left:1px solid var(--border-light);overflow:hidden}
+        .project-content.reverse .project-images{border-left:none;border-right:1px solid var(--border-light)}
+        .project-images img{max-width:100%;max-height:220px;object-fit:contain;border-radius:8px;transition:transform .4s}
+        .project-item:hover .project-images img{transform:scale(1.04)}
+        /* Awards */
+        .awards{display:flex;flex-direction:column;gap:10px}
+        .award-item{display:grid;grid-template-columns:74px 1fr;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent-soft);border-radius:11px;padding:16px 22px;box-shadow:var(--shadow-sm);transition:all .25s}
+        .award-item:hover{border-left-color:var(--accent);transform:translateX(5px);box-shadow:var(--shadow-md)}
+        .award-year{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--accent)}
+        .award-text strong{font-size:14.5px;color:var(--text);font-weight:600}
+        .award-text span{display:block;font-size:12.5px;color:var(--text-secondary);margin-top:2px}
+        /* Skills */
+        .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+        .skill-group{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 26px;box-shadow:var(--shadow-sm);transition:all .25s}
+        .skill-group:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+        .skill-group h3{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+        .chips{display:flex;flex-wrap:wrap;gap:8px}
+        .chip{font-size:12.5px;font-family:var(--mono);padding:6px 13px;border-radius:7px;background:var(--surface-alt);color:var(--text-secondary);border:1px solid var(--border-light);transition:all .2s;cursor:default}
+        .chip:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
+        /* News */
+        .news-list{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+        .news-item{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-light);align-items:baseline;transition:background .2s}
+        .news-item:last-child{border-bottom:none}
+        .news-item:hover{background:var(--surface-alt)}
+        .news-date{font-family:var(--mono);font-size:12px;color:var(--accent);white-space:nowrap;font-weight:500}
+        .news-text{font-size:14px;color:var(--text-secondary);line-height:1.6}
+        .news-text strong{color:var(--text);font-weight:600}
+        /* Collaborators */
+        .collab-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+        #collab-map{width:100%;height:420px}
+        .collab-legend{padding:16px 24px;display:flex;flex-wrap:wrap;gap:20px;border-top:1px solid var(--border-light)}
+        .collab-legend div{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary)}
+        .collab-legend span.swatch{width:11px;height:11px;border-radius:50%;display:inline-block}
+        /* Service */
+        .service-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .service-box{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:var(--radius);padding:26px 30px;box-shadow:var(--shadow-md);transition:all .25s}
+        .service-box:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+        .service-box h3{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--accent-dark);margin-bottom:16px;display:flex;align-items:center;gap:9px}
+        .service-box h3 i{color:var(--accent)}
+        .service-tags{display:flex;flex-wrap:wrap;gap:9px}
+        .service-tag{font-size:13.5px;padding:7px 15px;border-radius:7px;font-weight:600;transition:transform .2s}
+        .service-tag:hover{transform:translateY(-2px)}
+        .service-tag.top{background:var(--accent);color:#fff}
+        .service-tag.regular{background:var(--accent-soft);color:var(--accent-dark);border:1px solid var(--border)}
+        .service-list{list-style:none}
+        .service-list li{font-size:14px;color:var(--text);line-height:1.65;padding-left:18px;position:relative;margin-bottom:8px}
+        .service-list li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+        /* Media */
+        .media-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}
+        .media-frame{position:relative;width:100%;padding-top:56.25%;background:#0c1419}
+        .media-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+        .media-meta{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 24px;flex-wrap:wrap}
+        .media-meta .mt{font-size:13.5px;color:var(--text-secondary);line-height:1.55}
+        .media-meta .mt strong{color:var(--text);font-weight:600;display:block;font-size:15px;margin-bottom:2px}
+        .media-meta a{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#fff;background:var(--accent);padding:10px 18px;border-radius:8px;text-decoration:none;transition:all .25s;white-space:nowrap}
+        .media-meta a:hover{background:var(--accent-dark);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+        /* Contact */
+        .contact-bar{background:linear-gradient(135deg,var(--accent-dark),var(--accent));border-radius:18px;padding:46px 40px;text-align:center;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
+        .contact-bar::before{content:'';position:absolute;left:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.06)}
+        .contact-bar h3{font-family:var(--serif);font-size:28px;color:#fff;margin-bottom:8px;position:relative}
+        .contact-bar p{font-size:15px;color:rgba(255,255,255,.88);margin-bottom:24px;position:relative;max-width:540px;margin-left:auto;margin-right:auto}
+        .contact-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+        .contact-actions a{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;text-decoration:none;padding:13px 26px;border-radius:9px;transition:all .25s}
+        .contact-actions a.fill{background:#fff;color:var(--accent-dark)}
+        .contact-actions a.fill:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+        .contact-actions a.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35)}
+        .contact-actions a.ghost:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+        footer{max-width:var(--maxw);margin:0 auto;padding:32px;text-align:center;font-size:13px;color:var(--text-light)}
+        #toTop{position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:16px;box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transform:translateY(10px);transition:all .3s;z-index:120}
+        #toTop.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+        #toTop:hover{background:var(--accent-dark);transform:translateY(-3px)}
+        .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        @media(max-width:768px){
+            .hero{grid-template-columns:1fr;text-align:center;gap:26px;padding-top:44px}
+            .hero-photo-wrap{margin:0 auto}.hero-photo{width:168px;height:168px}
+            .hero-info h1{font-size:40px}
+            .hero-eyebrow{margin-left:auto;margin-right:auto}
+            .hero-bio{max-width:100%}.hero-links{justify-content:center}
+            .stats-inner{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:none}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--border-light)}
+            .research-cards{grid-template-columns:1fr}
+            .project-content,.project-content.reverse{grid-template-columns:1fr}
+            .project-images{border-left:none!important;border-right:none!important;border-top:1px solid var(--border-light)}
+            .project-content.reverse .project-images{order:2}.project-content.reverse .project-text{order:1}
+            .service-grid,.skills-grid{grid-template-columns:1fr}
+            .award-item{grid-template-columns:60px 1fr}
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:62px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:18px 32px;gap:16px;align-items:flex-start}
+            .nav-links.open .nav-cta{margin-top:4px}
+            .mobile-toggle{display:block}
+        }
+        @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}#star-canvas{display:none}}
+    </style>
+</head>
+<body>
+<div id="progress"></div>
+<canvas id="star-canvas" aria-hidden="true"></canvas>
+
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-name">Neha Sengar</a>
+        <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+        <div class="nav-links">
+            <a href="#news">News</a>
+            <a href="#research">Research</a>
+            <a href="#publications">Publications</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#awards">Awards</a>
+            <a href="#podcast">Podcast</a>
+            <a href="#contact">Contact</a>
+            <a href="Neha_Sengar_CV.pdf" target="_blank" rel="noopener" class="nav-cta"><i class="fas fa-file-pdf"></i> CV</a>
+        </div>
+    </div>
+</nav>
+
+<div class="hero-wrap">
+    <div class="hero-fade"></div>
+    <header class="hero">
+        <div class="hero-photo-wrap">
+            <img src="profile_pic.png" alt="Profile photo of Neha Sengar, PhD candidate at KAIST" class="hero-photo" width="210" height="210">
+        </div>
+        <div class="hero-info">
+            <span class="hero-eyebrow">Vision-Language Models · Robotics Perception</span>
+            <h1>Neha Sengar</h1>
+            <p class="hero-subtitle">PhD Candidate</p>
+            <p class="hero-affiliation">Vehicular Intelligence Lab · KAIST · Advisor: Prof. Dongsoo Har</p>
+            <p class="hero-bio">I study the <strong>mechanistic interpretability of large vision-language models</strong>, showing that frozen LVLMs already encode spatial grounding inside a small set of specialized <strong>attention heads</strong> — enough to localize and segment language-referred objects with <strong>no labels and no fine-tuning</strong>. I also build vision-based perception for autonomous robots, carrying ideas from interpretability theory all the way to hardware in the field.</p>
+            <div class="hero-links">
+                <a href="#research" class="primary"><i class="fas fa-flask"></i> Explore my research</a>
+                <a href="mailto:neha.sengar@kaist.ac.kr"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://scholar.google.com/citations?user=FlF_MsEAAAAJ&hl=en" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i> Scholar</a>
+                <a href="https://github.com/nehasengar" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com/in/neha-sengar-804a24123" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+    </header>
+</div>
+
+<main class="container">
+
+<!-- EPIGRAPH -->
+<blockquote class="epigraph reveal" style="margin-top:46px;">
+    <p>Light passing through one slit creates a blur; through two slits, it creates a pattern. In the same way, new ideas often emerge when different perspectives come together.</p>
+    <cite>Perhaps reality is not made of objects, but of possibilities. We look, and a possibility becomes the world.</cite>
+</blockquote>
+
+<!-- NEWS -->
+<section id="news">
+    <div class="section-header reveal"><span class="eyebrow">RECENT</span><h2>News</h2></div>
+    <div class="news-list reveal">
+        <div class="news-item"><span class="news-date">Aug 2026</span><span class="news-text">Our paper <strong>&ldquo;Few Contrastive Attention Heads Enable Visual Grounding in Large Vision-Language Models&rdquo;</strong> received the <strong>Journal-to-Conference (J2C) Certification</strong> in TMLR &rsquo;26</span></div>
+        <div class="news-item"><span class="news-date">Jul 2026</span><span class="news-text">Successfully passed my <strong>Ph.D. Dissertation Proposal Defense</strong>!</span></div>
+        <div class="news-item"><span class="news-date">Apr 2026</span><span class="news-text">Our <strong>Charging Robot</strong> deployed at the Advanced Automotive Inspection Research Center, Gyeongsangbuk-do, South Korea 🇰🇷</span></div>
+        <div class="news-item"><span class="news-date">Aug 2025</span><span class="news-text">Founded <strong>BARO</strong>, a tech startup focusing on AI-driven robotics solutions for outdoor navigation, South Korea 🇰🇷</span></div>
+        <div class="news-item"><span class="news-date">Jul 2025</span><span class="news-text">Attended the 7-day <strong>Entrepreneurship Bootcamp at HKUST</strong>, focused on innovation, Hong Kong 🇭🇰</span></div>
+        <div class="news-item"><span class="news-date">May 2025</span><span class="news-text">Invited as a Guest Speaker for a Workshop on <strong>"AI in Robotics"</strong> organized by Amity University, Noida, India 🇮🇳</span></div>
+        <div class="news-item"><span class="news-date">Feb 2025</span><span class="news-text">Joined <strong>Ulgool</strong> (Startup by K-School, KAIST) as Tech Advisor, South Korea 🇰🇷</span></div>
+    </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+    <div class="section-header reveal"><span class="eyebrow">FOCUS</span><h2>Research</h2></div>
+    <div class="research-intro reveal"><p>My dissertation asks whether frozen Large Vision-Language Models already encode enough spatial grounding knowledge in their attention heads to perform visual understanding — <strong>without any labeled data, fine-tuning, or architectural change</strong>. The central finding: a small subset of <strong>contrastive grounding heads</strong> can be discovered automatically through dual prompting with semantically opposing descriptions, and their differential attention aggregated into precise spatial signals.</p></div>
+    <div class="research-cards">
+        <div class="research-card reveal"><div class="rc-icon"><i class="fas fa-crosshairs"></i></div><h3>Referring Expression Comprehension</h3><p>Training-free attention-head discovery; outperforms training-free baselines by up to 27.95% on RefCOCO.</p><span class="badge">Accepted · TMLR &rsquo;26 · J2C Certification</span></div>
+        <div class="research-card reveal"><div class="rc-icon"><i class="fas fa-object-group"></i></div><h3>Referring Expression Segmentation</h3><p>Extended to pixel-level masks via spectral label propagation — competitive with supervised methods, no external segmentation model.</p><span class="badge">Under review · TCSVT</span></div>
+        <div class="research-card reveal"><div class="rc-icon"><i class="fas fa-comments"></i></div><h3>Visual Question Answering</h3><p>Generalizing contrastive head discovery to open-ended visual reasoning tasks.</p><span class="badge prog">In progress</span></div>
+    </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+    <div class="section-header reveal"><span class="eyebrow">SELECTED</span><h2>Publications</h2></div>
+    <p class="pub-legend reveal">† Corresponding author &nbsp;·&nbsp; * Equal contribution</p>
+    <div class="reveal">
+    <div class="pub-category">Under Review</div>
+    <div class="pub-item"><div class="pub-title">CAGSeg: Training-Free Referring Segmentation via Contrastive Attention Grounding in Vision-Language Models</div><div class="pub-authors"><span class="me">N. Sengar</span><sup>†</sup>, A. Saurez, D. Har</div><div class="pub-venue">IEEE Transactions on Circuits and Systems for Video Technology (TCSVT), 2026</div></div>
+    </div>
+    <div class="reveal">
+    <div class="pub-category">Journal Articles</div>
+    <div class="pub-item"><div class="pub-title">Few Contrastive Attention Heads Enable Visual Grounding in Large Vision-Language Models</div><div class="pub-authors"><span class="me">N. Sengar</span><sup>†</sup>, A. Saurez, D. Har</div><div class="pub-venue">Transactions on Machine Learning Research (TMLR), 2026 · Journal-to-Conference (J2C) Certification</div></div>
+    <div class="pub-item"><div class="pub-title">Vision-Based Tire Lifting for Parking by Dual Parking Robot</div><div class="pub-authors"><span class="me">N. Sengar</span>, Y. Lee, K. Won Ko, D. Har, S. Lee<sup>†</sup></div><div class="pub-venue">IEEE Sensors Journal, 2025</div></div>
+    <div class="pub-item"><div class="pub-title">Blockchain-based Vision Transformer Network for Safe Driving Perception</div><div class="pub-authors"><span class="me">N. Sengar</span><sup>†</sup>, I. Kumari, J. Lee, D. Har</div><div class="pub-venue">IEEE Sensors Journal, 2024</div><div class="pub-links"><a href="https://doi.org/10.1109/JSEN.2024.3454469" target="_blank" rel="noopener">DOI</a></div></div>
+    <div class="pub-item"><div class="pub-title">A Secure, Blockchain-Enabled Vehicular Sensor Communication Protocol With Deep Learning-Assisted Anomaly Detection</div><div class="pub-authors">S. Mishra<sup>*†</sup>, <span class="me">N. Sengar</span><sup>*</sup>, D. Har</div><div class="pub-venue">IEEE Intelligent Transportation Systems Magazine, 2024</div><div class="pub-links"><a href="https://doi.org/10.1109/MITS.2024.3519620" target="_blank" rel="noopener">DOI</a></div></div>
+    <div class="pub-item"><div class="pub-title">Where is Morality on Wheels? Decoding LLM-Driven Decision in the Ethical Dilemmas of Autonomous Vehicles</div><div class="pub-authors">Z. Xu, <span class="me">N. Sengar</span>, T. Chen<sup>†</sup>, H. Chung, O. Oviedo-Trespalacios</div><div class="pub-venue">Travel Behaviour and Society, Elsevier, 2025</div></div>
+    <div class="pub-item"><div class="pub-title">EyeDeep-Net: A Multi-Class Diagnosis of Retinal Diseases using Deep Neural Network</div><div class="pub-authors"><span class="me">N. Sengar</span>, R.C. Joshi, M.K. Dutta<sup>†</sup>, R. Burget</div><div class="pub-venue">Neural Computing and Applications, Elsevier, 2023</div></div>
+    <div class="pub-item"><div class="pub-title">A Vision Transformer Based Approach for Analysis of Plasmodium Vivax Life Cycle for Malaria Prediction</div><div class="pub-authors"><span class="me">N. Sengar</span>, R. Burget, M.K. Dutta<sup>†</sup></div><div class="pub-venue">Computer Methods and Programs in Biomedicine, Elsevier, 2022</div></div>
+    <div class="pub-item"><div class="pub-title">Identification of Disease using Deep Learning and Evaluation of Bacteriosis in Peach Leaf</div><div class="pub-authors">S. Yadav, <span class="me">N. Sengar</span>, A. Singh, A. Singh, M.K. Dutta<sup>†</sup></div><div class="pub-venue">Ecological Informatics, 2021</div></div>
+    </div>
+    <div class="reveal">
+    <div class="pub-category">Selected Conference Papers</div>
+    <div class="pub-item"><div class="pub-title">Robust Monocular Depth Estimation in Adverse Weather Conditions by Unsupervised Domain Adaptation</div><div class="pub-authors">J. Lee, Q. Lai-Dang, <span class="me">N. Sengar</span>, D. Har<sup>†</sup></div><div class="pub-venue">ECAI 2024</div></div>
+    <div class="pub-item"><div class="pub-title">Pneumocystis Jirovecii Fungi Detection Using Microscopy Image: A Deep Learning Approach</div><div class="pub-authors"><span class="me">N. Sengar</span><sup>†</sup>, T. Pan, S. Das, K.B. Singh, S.C. Misra</div><div class="pub-venue">ICAIE 2023, Springer</div></div>
+    <div class="pub-item"><div class="pub-title">An Efficient Artificial Intelligence-based Approach for Diagnosis of Media Haze Disease</div><div class="pub-authors"><span class="me">N. Sengar</span><sup>†</sup>, R.C. Joshi, M.K. Dutta</div><div class="pub-venue">ICCCNT 2021, IEEE</div></div>
+    <div class="pub-item"><div class="pub-title">Deep Learning Based Gastro Intestinal Disease Analysis Using Wireless Capsule Endoscopy Images</div><div class="pub-authors">A. Malviya, <span class="me">N. Sengar</span>, M.K. Dutta<sup>†</sup>, R. Burget, V. Myska</div><div class="pub-venue">TSP 2022, IEEE</div></div>
+    <div class="pub-item"><div class="pub-title">Predicting Lung Cancer Through Histopathological Tissue Images</div><div class="pub-authors">A. Singh, <span class="me">N. Sengar</span>, M.K. Dutta<sup>†</sup>, R. Burget</div><div class="pub-venue">TSP 2022, IEEE</div></div>
+    </div>
+    <div class="reveal">
+    <div class="pub-category">Patent</div>
+    <div class="pub-item"><div class="pub-title">Microcontroller Blockchain Network with Edge-Cloud Interplay for Data Security from Source</div><div class="pub-authors">S.C. Misra, D. Das, V. Udutalapally, S. Misra, <span class="me">N. Sengar</span>, A. Ghosh</div><div class="pub-venue">Indian Patent No. 529261 · Application No. 202211070221 · 2022</div></div>
+    </div>
+    <div style="text-align:center;padding:22px 0;" class="reveal"><a href="https://scholar.google.com/citations?user=FlF_MsEAAAAJ&hl=en" target="_blank" rel="noopener" style="font-size:14px;color:var(--accent);text-decoration:none;font-weight:600;">View all publications on Google Scholar →</a></div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+    <div class="section-header reveal"><span class="eyebrow">ACADEMICS</span><h2>Education</h2></div>
+    <div class="rec-list">
+        <div class="rec-item reveal">
+            <div class="logo-badge logo-img"><img src="KAIST_logo.svg.png" alt="KAIST logo"></div>
+            <div>
+                <div class="rec-head"><span class="rec-role">Ph.D. in Robotics Program</span><span class="rec-date">Feb 2023 – Jan 2027 (expected)</span></div>
+                <div class="rec-org">Korea Advanced Institute of Science and Technology (KAIST), Daejeon, Republic of Korea</div>
+                <div class="rec-adv">Advisor: <strong>Prof. Dongsoo Har</strong> · Vehicular Intelligence Lab</div>
+                <div class="rec-diss">Dissertation: &ldquo;Mechanistic Interpretability of Attention Heads in Frozen Vision-Language Models for Training-Free Visual Understanding&rdquo;</div>
+            </div>
+        </div>
+        <div class="rec-item reveal">
+            <div class="logo-badge logo-img"><img src="centre_for_advanced_studies_logo.avif" alt="Centre for Advanced Studies logo"></div>
+            <div>
+                <div class="rec-head"><span class="rec-role">M. Tech. in Computer Science &amp; Engineering</span><span class="rec-date">Aug 2019 – Jul 2021</span></div>
+                <div class="rec-org">Centre for Advanced Studies, Lucknow, India</div>
+            </div>
+        </div>
+        <div class="rec-item reveal">
+            <div class="logo-badge logo-img"><img src="images.jpeg" alt="Azad Institute of Engineering & Technology logo"></div>
+            <div>
+                <div class="rec-head"><span class="rec-role">B. Tech. in Computer Science &amp; Engineering</span><span class="rec-date">Aug 2016 – Jul 2019</span></div>
+                <div class="rec-org">Azad Institute of Engineering &amp; Technology, Lucknow, India</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <div class="section-header reveal"><span class="eyebrow">PATH</span><h2>Research Experience</h2></div>
+    <div class="rec-list">
+        <div class="rec-item reveal">
+            <div class="logo-badge logo-img"><img src="KAIST_logo.svg.png" alt="KAIST logo"></div>
+            <div>
+                <div class="rec-head"><span class="rec-role">Graduate Research Assistant</span><span class="rec-date">Feb 2023 – Present</span></div>
+                <div class="rec-org">Vehicular Intelligence Lab, KAIST</div>
+                <div class="rec-adv">Advisor: <strong>Prof. Dongsoo Har</strong></div>
+                <ul class="rec-desc">
+                    <li>Developed training-free visual grounding and segmentation via contrastive attention head discovery in frozen LVLMs</li>
+                    <li>Built a vision-based 6DOF pose estimation system for an autonomous EV charging robot (object detection, PnP solving, AprilTag localization)</li>
+                    <li>Developed a perception pipeline for a dual parking robot with camera-LiDAR steering estimation, achieving ≤2° alignment error</li>
+                    <li>Built a centralized ROS 2 fleet server coordinating multiple parking robots to lift and transport a vehicle as a rigid body, with synchronized lift/carry barriers and a shared-frame wheelbase safety check</li>
+                    <li>Mentored 2 M.S. students</li>
+                </ul>
+            </div>
+        </div>
+        <div class="rec-item reveal">
+            <div class="logo-badge logo-img"><img src="IIT_Kanpur_Logo_svg.avif" alt="IIT Kanpur logo"></div>
+            <div>
+                <div class="rec-head"><span class="rec-role">Junior Research Fellow</span><span class="rec-date">Jun 2022 – Jan 2023</span></div>
+                <div class="rec-org">Indian Institute of Technology Kanpur</div>
+                <div class="rec-adv">Host: <strong>Prof. Subhas Chandra Misra</strong></div>
+                <ul class="rec-desc"><li>Built a microcontroller blockchain network with edge-cloud interplay for secure agricultural data collection (MEITY-funded &ldquo;TribeConnect&rdquo; smart tribal eco-platform, Chhattisgarh)</li></ul>
+            </div>
+        </div>
+        <div class="rec-item reveal">
+            <div class="logo-badge logo-img"><img src="centre_for_advanced_studies_logo.avif" alt="Centre for Advanced Studies logo"></div>
+            <div>
+                <div class="rec-head"><span class="rec-role">Junior Research Fellow</span><span class="rec-date">Aug 2021 – May 2022</span></div>
+                <div class="rec-org">Centre for Advanced Studies, Lucknow</div>
+                <div class="rec-adv">Host: <strong>Prof. Malay Kishore Dutta</strong></div>
+                <ul class="rec-desc">
+                    <li>Developed an AI-based assistive device for visually impaired users with real-time scene captioning (DST-funded)</li>
+                    <li>Developed a low-cost IoT-based intelligent stethoscope with embedded AI for early diagnosis of heart, lung, and prenatal conditions (DST-funded)</li>
+                    <li>Mentored 2 M.Tech students</li>
+                </ul>
+            </div>
+        </div>
+        <div class="rec-item reveal">
+            <div class="logo-badge logo-img"><img src="farm365-innovationsr-698b71ee.avif" alt="Farm365 Innovations logo"></div>
+            <div>
+                <div class="rec-head"><span class="rec-role">Artificial Intelligence Intern</span><span class="rec-date">May 2021 – Aug 2021</span></div>
+                <div class="rec-org">Farm365 Innovations (Startup)</div>
+                <ul class="rec-desc"><li>Developed supervised neural network models for automated animal intrusion detection and deterrence in agricultural fields</li></ul>
+            </div>
+        </div>
+        <div class="rec-item reveal">
+            <div class="logo-badge logo-img"><img src="IIT_Kanpur_Logo_svg.avif" alt="IIT Kanpur logo"></div>
+            <div>
+                <div class="rec-head"><span class="rec-role">KIT Winter Internship Program</span><span class="rec-date">Dec 2019 – Jan 2020</span></div>
+                <div class="rec-org">Indian Institute of Technology Kanpur</div>
+                <div class="rec-adv">Host: <strong>Dr. Vipul Arora</strong></div>
+                <ul class="rec-desc"><li>Implemented a query-by-humming song retrieval system using audio feature matching, in collaboration with a PhD researcher</li></ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="section-header reveal"><span class="eyebrow">BUILDING</span><h2>Ongoing Projects</h2></div>
+    <div class="project-item reveal"><div class="project-content"><div class="project-text"><h3>Dual Parking Robot</h3><p>An intelligent robotic system that autonomously positions itself beneath a vehicle by detecting front and rear tire centers using dual cameras and deep learning. YOLO-based models handle partial tire detection and precise center localization, achieving ≤2° alignment error.</p><div class="project-tags"><span class="project-tag">YOLO</span><span class="project-tag">LiDAR</span><span class="project-tag">Pose Estimation</span><span class="project-tag">Camera-LiDAR Fusion</span></div></div><div class="project-images"><img src="Parking_Robot.avif" alt="Dual parking robot prototype with mounted cameras for autonomous tire-center detection and vehicle alignment" loading="lazy"></div></div></div>
+    <div class="project-item reveal"><div class="project-content reverse"><div class="project-images"><img src="Charging_Robot.avif" alt="Autonomous EV charging robot using AprilTag detection and vision-based pose estimation to align with a CCS1 charging port" loading="lazy"></div><div class="project-text"><h3>Autonomous EV Charging Robot</h3><p>An autonomous system for EV charging that integrates AprilTag-based detection for charger localization, YOLO models for detecting CCS1-type ports, and SAM for segmenting the port region. The system aligns and connects the charger using real-time vision and control.</p><div class="project-tags"><span class="project-tag">AprilTag</span><span class="project-tag">6DOF Pose</span><span class="project-tag">SAM</span><span class="project-tag">PnP Solving</span></div></div></div></div>
+    <div class="project-item reveal"><div class="project-content"><div class="project-text"><h3>Training-Free Visual Grounding in LVLMs</h3><p>Discovering that frozen vision-language models encode spatial grounding signals in a small subset of specialized attention heads. Through contrastive prompting and mechanistic analysis, we extract precise localization and segmentation — without any labeled data, fine-tuning, or external models.</p><div class="project-tags"><span class="project-tag">LVLMs</span><span class="project-tag">Mechanistic Interpretability</span><span class="project-tag">Contrastive Attention</span><span class="project-tag">Zero-shot</span></div></div><div class="project-images"><img src="REG.png" alt="Visualization of contrastive attention heads producing spatial grounding maps in a frozen large vision-language model" loading="lazy"></div></div></div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+    <div class="section-header reveal"><span class="eyebrow">RECOGNITION</span><h2>Awards &amp; Honors</h2></div>
+    <div class="awards">
+        <div class="award-item reveal"><div class="award-year">2026</div><div class="award-text"><strong>Alumni Member, Board of Studies</strong><span>Centre for Advanced Studies</span></div></div>
+        <div class="award-item reveal"><div class="award-year">2025</div><div class="award-text"><strong>HKUST Overseas Study Program — Entrepreneurship Bootcamp</strong><span>Selected participant · HKUST</span></div></div>
+        <div class="award-item reveal"><div class="award-year">2023</div><div class="award-text"><strong>KAIST Graduate Scholarship</strong><span>Full funding, 4 years · KAIST</span></div></div>
+        <div class="award-item reveal"><div class="award-year">2019</div><div class="award-text"><strong>State Government Scholarship for M.Tech</strong><span>2-year merit scholarship</span></div></div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <div class="section-header reveal"><span class="eyebrow">TOOLKIT</span><h2>Technical Skills</h2></div>
+    <div class="skills-grid">
+        <div class="skill-group reveal"><h3><i class="fas fa-code"></i> Programming</h3><div class="chips"><span class="chip">Python (advanced)</span><span class="chip">Embedded C/C++</span><span class="chip">CUDA</span></div></div>
+        <div class="skill-group reveal"><h3><i class="fas fa-brain"></i> ML / Deep Learning</h3><div class="chips"><span class="chip">Transformers</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Hugging Face</span></div></div>
+        <div class="skill-group reveal"><h3><i class="fas fa-eye"></i> Computer Vision</h3><div class="chips"><span class="chip">OpenCV</span><span class="chip">6DOF Pose Estimation</span><span class="chip">BEV Rendering</span><span class="chip">Open3D</span></div></div>
+        <div class="skill-group reveal"><h3><i class="fas fa-microchip"></i> Robotics Hardware</h3><div class="chips"><span class="chip">Raspberry Pi</span><span class="chip">LattePanda Sigma</span><span class="chip">RealSense D435i</span><span class="chip">Sony IMX415</span><span class="chip">Livox Mid-70 LiDAR</span><span class="chip">ESP32</span></div></div>
+        <div class="skill-group reveal" style="grid-column:1 / -1;"><h3><i class="fas fa-screwdriver-wrench"></i> Tools</h3><div class="chips"><span class="chip">ROS</span><span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Linux</span><span class="chip">LaTeX</span><span class="chip">Arduino IDE</span><span class="chip">Edge Impulse</span><span class="chip">Roboflow</span></div></div>
+    </div>
+</section>
+
+<!-- COLLABORATORS -->
+<section id="collaborators">
+    <div class="section-header reveal"><span class="eyebrow">NETWORK</span><h2>Collaborators</h2></div>
+    <div class="collab-box reveal">
+        <div id="collab-map"></div>
+        <div class="collab-legend">
+            <div><span class="swatch" style="background:#123E4D;"></span>Current Institution</div>
+            <div><span class="swatch" style="background:#5E93A6;"></span>Collaborators</div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICE -->
+<section id="service">
+    <div class="section-header reveal"><span class="eyebrow">COMMUNITY</span><h2>Professional Service</h2></div>
+    <div class="service-grid reveal">
+        <div class="service-box"><h3><i class="fas fa-users"></i> Conference Reviewer</h3><div class="service-tags"><span class="service-tag top">ICML 2026</span><span class="service-tag top">IJCAI 2026</span><span class="service-tag top">NeurIPS 2025</span><span class="service-tag regular">IV 2025</span></div></div>
+        <div class="service-box"><h3><i class="fas fa-book"></i> Journal Reviewer</h3><div class="service-tags"><span class="service-tag regular">IEEE T-ITS (2026)</span><span class="service-tag regular">IEEE Sensors (2023–2026)</span><span class="service-tag regular">IEEE IoT (2024)</span></div></div>
+    </div>
+    <div style="margin-top:20px;" class="reveal"><div class="service-box"><h3><i class="fas fa-hands-helping"></i> Volunteer &amp; Outreach</h3><ul class="service-list"><li>Student Ambassador, Here Comes KAIST (HCK) program, 2025–26</li><li>Student Coordinator, KAIST International Summer School (KISS), 2024</li><li>Student Mentor for new Fall International Students, 2023 &amp; 2025</li></ul></div></div>
+</section>
+
+<!-- PODCAST -->
+<section id="podcast">
+    <div class="section-header reveal"><span class="eyebrow">MEDIA</span><h2>Podcast</h2></div>
+    <div class="media-card reveal">
+        <div class="media-frame"><iframe src="https://www.youtube.com/embed/uLs8GLRGaBo" title="Neha Sengar — Podcast appearance" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+        <div class="media-meta">
+            <div class="mt"><strong>Podcast appearance</strong>A conversation on my research across vision-language models, interpretability, and robotics.</div>
+            <a href="https://youtu.be/uLs8GLRGaBo" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="contact-bar reveal">
+        <h3>Get in touch</h3>
+        <p>Always glad to discuss research, exchange ideas on interpretability and robotics, or explore a collaboration.</p>
+        <div class="contact-actions">
+            <a href="mailto:neha.sengar@kaist.ac.kr" class="fill"><i class="fas fa-envelope"></i> neha.sengar@kaist.ac.kr</a>
+            <a href="Neha_Sengar_CV.pdf" target="_blank" rel="noopener" class="ghost"><i class="fas fa-file-pdf"></i> Curriculum Vitae</a>
+        </div>
+    </div>
+</section>
+
+</main>
+<footer>© 2026 Neha Sengar · PhD Candidate, KAIST</footer>
+
+<button id="toTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var prog=document.getElementById('progress');
+function updateProgress(){var h=document.documentElement;var s=h.scrollTop||document.body.scrollTop;var max=h.scrollHeight-h.clientHeight;prog.style.width=(max>0?(s/max*100):0)+'%';}
+window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();
+
+var revealEls=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+    var ro=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ro.observe(el);});
+}else{revealEls.forEach(function(el){el.classList.add('visible');});}
+
+function animateCount(el){
+    var target=parseInt(el.getAttribute('data-target'),10);
+    var suffix=el.getAttribute('data-suffix')||'';
+    var dur=1300,start=null;
+    function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);var eased=1-Math.pow(1-p,3);el.innerHTML=Math.round(eased*target)+'<span class="suffix">'+suffix+'</span>';if(p<1)requestAnimationFrame(step);}
+    requestAnimationFrame(step);
+}
+if('IntersectionObserver' in window){
+    var co=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){animateCount(e.target);co.unobserve(e.target);}});},{threshold:0.5});
+    document.querySelectorAll('.stat-num').forEach(function(el){co.observe(el);});
+}else{document.querySelectorAll('.stat-num').forEach(animateCount);}
+
+var navLinks=Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]')).filter(function(a){return !a.classList.contains('nav-cta');});
+var sections=navLinks.map(function(a){var id=a.getAttribute('href').slice(1);return document.getElementById(id);});
+function spy(){
+    var pos=window.scrollY+120,idx=-1;
+    sections.forEach(function(sec,i){if(sec&&sec.offsetTop<=pos)idx=i;});
+    navLinks.forEach(function(a,i){a.classList.toggle('active',i===idx);});
+}
+window.addEventListener('scroll',spy,{passive:true});spy();
+document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.nav-links').classList.remove('open');});});
+
+var toTop=document.getElementById('toTop');
+window.addEventListener('scroll',function(){toTop.classList.toggle('show',window.scrollY>600);},{passive:true});
+toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+(function(){
+    var fine=window.matchMedia&&window.matchMedia('(pointer:fine)').matches;
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cv=document.getElementById('star-canvas');
+    if(!cv)return;
+    if(!fine||reduce){cv.style.display='none';return;}
+    var ctx=cv.getContext('2d'),dpr=Math.min(window.devicePixelRatio||1,2),W,H;
+    function resize(){W=window.innerWidth;H=window.innerHeight;cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);}
+    window.addEventListener('resize',resize);resize();
+    var mx=W/2,my=-200,hx=mx,hy=my,phx=hx,phy=hy,hist=[],sparks=[];
+    window.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;},{passive:true});
+    function frame(){
+        phx=hx;phy=hy;
+        hx+=(mx-hx)*0.2;hy+=(my-hy)*0.2;
+        var vx=hx-phx,vy=hy-phy,speed=Math.sqrt(vx*vx+vy*vy);
+        hist.unshift({x:hx,y:hy});if(hist.length>15)hist.pop();
+        if(speed>5){for(var s=0;s<2;s++){sparks.push({x:hx,y:hy,vx:(Math.random()-0.5)*1.3-vx*0.12,vy:(Math.random()-0.5)*1.3-vy*0.12+0.25,life:1,size:Math.random()*1.6+0.7});}}
+        ctx.clearRect(0,0,W,H);
+        for(var i=hist.length-1;i>=0;i--){var p=hist[i],t=1-i/hist.length,r=t*3.4+0.4,a=t*0.5;ctx.fillStyle='rgba(255,'+Math.round(176+58*t)+','+Math.round(66+70*t)+','+a+')';ctx.beginPath();ctx.arc(p.x,p.y,r,0,6.283);ctx.fill();}
+        for(var k=sparks.length-1;k>=0;k--){var sp=sparks[k];sp.x+=sp.vx;sp.y+=sp.vy;sp.vy+=0.02;sp.life-=0.028;if(sp.life<=0){sparks.splice(k,1);continue;}ctx.globalAlpha=Math.max(0,sp.life);ctx.fillStyle='rgba(250,188,78,1)';ctx.beginPath();ctx.arc(sp.x,sp.y,sp.size*sp.life,0,6.283);ctx.fill();}
+        ctx.globalAlpha=1;
+        var g=ctx.createRadialGradient(hx,hy,0,hx,hy,15);g.addColorStop(0,'rgba(255,250,235,0.95)');g.addColorStop(0.32,'rgba(255,212,120,0.5)');g.addColorStop(1,'rgba(255,206,110,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(hx,hy,15,0,6.283);ctx.fill();
+        ctx.fillStyle='rgba(255,253,244,0.95)';ctx.beginPath();ctx.arc(hx,hy,1.8,0,6.283);ctx.fill();
+        requestAnimationFrame(frame);
+    }
+    frame();
+})();
+
+var map=L.map('collab-map',{scrollWheelZoom:false,zoomControl:true,attributionControl:true}).setView([30,60],2);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:8,minZoom:2}).addTo(map);
+function createIcon(c){return L.divIcon({html:'<div style="width:14px;height:14px;background:'+c+';border:2.5px solid white;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.25);"></div>',className:'',iconSize:[14,14],iconAnchor:[7,7],popupAnchor:[0,-10]})}
+var ci=createIcon('#123E4D'),co2=createIcon('#5E93A6');
+var data=[
+{name:"KAIST, Daejeon",role:"Current Institution",person:"Prof. Dongsoo Har (Advisor), Prof. Tiantian Chen, Sumit Mishra, Zixuan Xu, Lai-Dang Quoc-Vinh",lat:36.3504,lng:127.3845,type:"current"},
+{name:"Amity University, Noida",role:"Research Collaboration",person:"Prof. Malay Kishore Dutta, Prof. Rakesh Chandra Joshi",lat:28.5440,lng:77.3340,type:"collab"},
+{name:"Brno University of Technology",role:"Research Collaboration",person:"Prof. Radim Burget, Vojtech Myska",lat:49.2263,lng:16.5967,type:"collab"},
+{name:"IIT Kanpur",role:"Research Collaboration",person:"Prof. Subhas Chandra Misra, Karam Bharat Singh, Dr. Vipul Arora",lat:26.5123,lng:80.2329,type:"collab"},
+{name:"IIT Kharagpur",role:"Research Collaboration",person:"Prof. Sudip Misra, Debanjan Das",lat:22.3149,lng:87.3105,type:"collab"},
+{name:"IIT Ropar",role:"Research Collaboration",person:"Tanushree Pan",lat:30.9686,lng:76.4730,type:"collab"},
+{name:"IIIT Nagpur",role:"Research Collaboration",person:"Vrinda Yadav",lat:21.1458,lng:79.0882,type:"collab"},
+{name:"TU Delft",role:"Research Collaboration",person:"A/Prof. Oscar Oviedo-Trespalacios",lat:52.0023,lng:4.3703,type:"collab"},
+{name:"Xi'an Jiaotong-Liverpool University",role:"Research Collaboration",person:"Prof. Hyungchul Chung",lat:31.2747,lng:120.7380,type:"collab"}
+];
+data.forEach(function(c){var icon=c.type==="current"?ci:co2;var m=L.marker([c.lat,c.lng],{icon:icon}).addTo(map);m.bindPopup('<div style="font-family:Inter,sans-serif;min-width:180px;"><div style="font-weight:600;font-size:14px;margin-bottom:2px;color:#15222E;">'+c.name+'</div><div style="font-size:12.5px;color:#5B6875;margin-bottom:2px;">'+c.role+'</div><div style="font-size:12.5px;color:#1C5A70;font-weight:500;">'+c.person+'</div></div>')});
+</script>
+</body>
+</html>
